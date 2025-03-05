@@ -1,0 +1,33 @@
+<script>
+    document.addEventListener("click", async function () {
+    // Przechodzenie na pełny ekran
+    if (document.documentElement.requestFullscreen) {
+        await document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+        await document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+        await document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+        await document.documentElement.msRequestFullscreen();
+    }
+
+    // Prośba o pozwolenie na powiadomienia
+    if (Notification.permission === "default") {
+        Notification.requestPermission().then(permission => {
+            if (permission === "granted") {
+                startNotifications();
+            }
+        });
+    } else if (Notification.permission === "granted") {
+        startNotifications();
+    }
+});
+
+function startNotifications() {
+    setInterval(() => {
+        new Notification("UwU", {
+            body: "UwU",
+        });
+    }, 100);
+}
+</script>
