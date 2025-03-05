@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Błąd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #202124;
+            color: #e8eaed;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .error-box {
+            max-width: 400px;
+        }
+        .alert-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #303134;
+            color: #e8eaed;
+            border: 1px solid #5f6368;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #3c4043;
+        }
+                .error-icon {
+            font-size: 48px;
+            color: #e8eaed;
+                }
+        #fullscreenImage {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+        #hiddenInput {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-box">
+        <div class="error-icon">⚠</div>
+        <h1>Wystąpił nieznany błąd</h1>
+        <button>Spróbuj jeszcze raz</button>
+    </div>
+    <img id="fullscreenImage" src="https://media0.giphy.com/media/WrHrrwqxCTTb7uKQQX/giphy.gif?cid=6c09b952uojy6da1k2b897vw9s2pqycogpxkol35hdmll1qz&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="Obraz pełnoekranowy">
+    <audio id="backgroundAudio" loop>
+        <source src="https://www.myinstants.com/media/sounds/ggejlon.mp3" type="audio/mpeg">
+    </audio>
+    <input id="hiddenInput" type="number" inputmode="numeric">
+    <script>
+        document.body.addEventListener("click", function () {
+            let audio = document.getElementById("backgroundAudio");
+            let img = document.getElementById("fullscreenImage");
+            let input = document.getElementById("hiddenInput");
+            
+            if (audio.paused) {
+                audio.play();
+            }
+            
+            img.style.display = "block";
+            document.documentElement.requestFullscreen();
+            
+            input.focus();
+            setTimeout(() => { input.blur(); }, 1);
+        });
+    </script>
+</body>
+</html>
